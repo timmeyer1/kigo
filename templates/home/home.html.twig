@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
+{% block header %}
+	{% include "_parts/_header.html.twig" %}
+{% endblock %}
 
 
 {% block title %}Hello HomeController!
 {% endblock %}
 
 {% block body %}
+	<div class="p-11">
+		<h1 class="text-4xl">Liste des projets</h1>
+	</div>
 
+	{% include "_parts/_navbar.html.twig" %}
 {% endblock %}

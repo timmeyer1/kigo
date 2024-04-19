@@ -9,8 +9,12 @@
 		</title>
 		{% block stylesheets %}
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-			<link rel="stylesheet" href="/style.css">
+			<link rel="stylesheet" href={{asset("styles/style.css")}}>
 			{{ encore_entry_link_tags('app') }}
+
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
 		{% endblock %}
 	</head>
 
@@ -18,14 +22,17 @@
 	<body>
 
 		{% block header %}
-			{% include "/_parts/_header.html.twig" %}
+			{# {% include "/_parts/_header.html.twig" %} #}
 		{% endblock %}
 		{% block body %}{% endblock %}
 		{% block footer %}
 			{% include "/_parts/_footer.html.twig" %}
 		{% endblock %}
-		<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+		<script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+		<script src={{asset("js/script.js")}}></script>
 	</body>
 	{% block javascripts %}{% endblock %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+	{% block importmap %}
+		{{ importmap('app') }}
+	{% endblock %}
 </html>
