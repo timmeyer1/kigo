@@ -41,6 +41,21 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v6.3.0"
     },
+    "symfony/asset-mapper": {
+        "version": "7.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.4",
+            "ref": "6c28c471640cc2c6e60812ebcb961c526ef8997f"
+        },
+        "files": [
+            "assets/app.js",
+            "assets/styles/app.css",
+            "config/packages/asset_mapper.yaml",
+            "importmap.php"
+        ]
+    },
     "symfony/console": {
         "version": "7.0",
         "recipe": {
@@ -185,6 +200,27 @@
             "package.json",
             "webpack.config.js"
         ]
+    },
+    "symfonycasts/tailwind-bundle": {
+        "version": "v0.5.1"
+    },
+    "tales-from-a-dev/flowbite-bundle": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "8c5eef17730535682128557a1016872fd3e81c33"
+        }
+    },
+    "tales-from-a-dev/twig-tailwind-extra": {
+        "version": "0.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.2",
+            "ref": "7243ab070ed66198eb82c026684e9b9773e7b64a"
+        }
     },
     "vich/uploader-bundle": {
         "version": "2.3",

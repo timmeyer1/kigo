@@ -1,0 +1,49 @@
+{% block header %}
+	<header>
+		<div class="w-screen bg-white shadow-md flex justify-between items-center px-4 py-3">
+			<a class="text-3xl" href="{{ path('app_home') }}">Kigo</a>
+			<div class="text-right">
+				<button class="text-black rounded-lg px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
+					<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 16 3">
+						<path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+					</svg>
+				</button>
+			</div>
+		</div>
+
+		<!-- drawer component -->
+		<div id="drawer-right-example" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-[60%] dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-right-label">
+
+			<h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-6xl font-semibold text-gray-500 dark:text-gray-400">
+
+				<svg class="w-14 h-14 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20">
+					<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+				</svg>Menu</h5>
+
+			<div class="py-4 overflow-y-auto">
+				<ul class="space-y-2 text-4xl">
+
+					<li>
+						<a href="{{path('app_home')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+							</svg>
+							<span class="flex-1 ms-3 whitespace-nowrap">Menu principal</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="{{path('app_logout')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+							<svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 18 16">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
+							</svg>
+							<span class="flex-1 ms-3 whitespace-nowrap">Déconnexion</span>
+						</a>
+
+					</li>
+
+				</ul>
+			</div>
+
+		</header>
+	{% endblock %}
