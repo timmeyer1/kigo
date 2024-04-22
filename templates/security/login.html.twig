@@ -1,62 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion
-{% endblock %}
+{% block title %}Kigo - Connexion{% endblock %}
 
 {% block body %}
-	{# <div class="flex flex-col items-center h-screen">
-											<img src="{{ asset('images/logo.png') }}" alt="Logo Spotify" class="w-64 pt-12 pb-12">
-									
-											<div class="bg-logo rounded-lg shadow-lg p-8 w-[80%]">
-												{% if error %}
-													<div class="bg-red-500 text-white rounded-md px-4 py-2 mb-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-												{% endif %}
-									
-												{% if app.user %}
-													<div class="mb-4">
-														Vous êtes connecté en tant que
-														{{ app.user.userIdentifier }},
-														<a href="{{ path('app_logout') }}" class="text-green-500 hover:text-green-600">Déconnexion</a>
-													</div>
-												{% endif %}
-									
-												<h1 class="text-3xl font-bold mb-6 justify-center">Connexion</h1>
-												<form method="post" class="text-center">
-													<div class="mb-4">
-														<label for="inputEmail" class="block text-gray-400 font-bold mb-2">Adresse e-mail</label>
-														<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-gray-700 border-gray-600 text-white rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Entrez votre adresse e-mail" autocomplete="email" required autofocus>
-													</div>
-													<div class="mb-6">
-														<label for="inputPassword" class="block text-gray-400 font-bold mb-2">Mot de passe</label>
-														<input type="password" name="password" id="inputPassword" class="bg-gray-700 border-gray-600 text-white rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
-													</div>
-									
-													<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-									
-													<button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">Se connecter</button>
-												</form>
-											</div>
-										</div> #}
-	<div class="flex flex-col items-center h-screen pt-44">
-		<img src="{{ asset('images/logo.png') }}" alt="Logo Spotify" class="w-64 pb-14">
-		<div class="bg-logo rounded-lg shadow-lg p-8 w-[65%]">
-			<h1 class="text-5xl justify-center flex mb-10">Connexion</h1>
-			<form method="post">
-				<div class="text-start">
-					<div class="mb-4">
-						<label for="inputEmail" class="text-3xl mb-2">Adresse e-mail</label>
-						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-gray-700 border-gray-600 rounded-lg w-full px-4 py-3 sm:px-4 sm:py-2" placeholder="Entrez votre adresse e-mail" autocomplete="email" required autofocus>
-					</div>
-					<div class="mb-6">
-						<label for="inputPassword" class="text-3xl mb-2">Mot de passe</label>
-						<input type="password" name="password" id="inputPassword" class="bg-gray-700 border-gray-600 rounded-lg w-full px-4 py-3 sm:px-4 sm:py-2" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
-					</div>
-				</div>
-
-				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-				<button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded items-center justify-center flex" type="submit">Se connecter</button>
-			</form>
-		</div>
-	</div>
+    <div class="flex flex-col items-center h-screen pt-44">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo Kigo" class="w-96 pb-14">
+        <div class="bg-logo rounded-lg shadow-lg p-8 w-[90%]">
+            <h1 class="text-8xl font-bold justify-center flex py-14">Connexion</h1>
+            <form method="post" class="flex flex-col items-center">
+                <div class="text-start mb-6">
+                    <div class="mb-4">
+                        <label for="inputEmail" class="text-6xl p-4">Adresse e-mail</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl" placeholder="Entrez votre adresse e-mail" autocomplete="email" required autofocus>
+                    </div>
+                    <div class="mb-6">
+                        <label for="inputPassword" class="text-6xl p-4">Mot de passe</label>
+                        <input type="password" name="password" id="inputPassword" class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                </div>
+                <button class="bg-green-500 hover:bg-green-600 text-white font-bold w-36 h-24 rounded text-3xl" type="submit">Go !</button>
+            </form>
+        </div>
+    </div>
+    <p class="flex justify-center bottom-0">Made by L'Idem for L'Idem</p>
 {% endblock %}

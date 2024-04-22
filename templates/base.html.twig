@@ -12,8 +12,6 @@
 			<link rel="stylesheet" href={{asset("styles/style.css")}}>
 			{{ encore_entry_link_tags('app') }}
 
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 			<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
 		{% endblock %}
 	</head>
@@ -29,6 +27,7 @@
 			{% include "/_parts/_footer.html.twig" %}
 		{% endblock %}
 		<script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+		<link rel="stylesheet" href="{{ asset('styles/app.css') }}">
 		<script src={{asset("js/script.js")}}></script>
 	</body>
 	{% block javascripts %}{% endblock %}
