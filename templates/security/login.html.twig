@@ -1,27 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kigo - Connexion{% endblock %}
+{% block title %}Kigo - Connexion
+{% endblock %}
 
 {% block body %}
-    <div class="flex flex-col items-center h-screen pt-44">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo Kigo" class="w-96 pb-14">
-        <div class="bg-logo rounded-lg shadow-lg p-8 w-[90%]">
-            <h1 class="text-8xl font-bold justify-center flex py-14">Connexion</h1>
-            <form method="post" class="flex flex-col items-center">
-                <div class="text-start mb-6">
-                    <div class="mb-4">
-                        <label for="inputEmail" class="text-6xl p-4">Adresse e-mail</label>
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl" placeholder="Entrez votre adresse e-mail" autocomplete="email" required autofocus>
-                    </div>
-                    <div class="mb-6">
-                        <label for="inputPassword" class="text-6xl p-4">Mot de passe</label>
-                        <input type="password" name="password" id="inputPassword" class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
-                    </div>
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                </div>
-                <button class="bg-green-500 hover:bg-green-600 text-white font-bold w-36 h-24 rounded text-3xl" type="submit">Go !</button>
-            </form>
-        </div>
-    </div>
-    <p class="flex justify-center bottom-0">Made by L'Idem for L'Idem</p>
+	<div class="flex flex-col items-center h-screen pt-44">
+		<img src="{{ asset('images/logo.png') }}" alt="Logo Kigo" class="w-96 pb-14">
+		<div class="bg-logo rounded-lg shadow-lg p-8 w-[90%]">
+			<h1 class="text-8xl font-bold justify-center flex py-14">Connexion</h1>
+			<form method="post" class="flex flex-col items-center">
+				<div class="text-start mb-6">
+					<div class="mb-4">
+						<label for="inputEmail" class="text-6xl p-4">Adresse e-mail</label>
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl" placeholder="Entrez votre adresse e-mail" autocomplete="email" required autofocus>
+					</div>
+					<div class="mb-6">
+						<label for="inputPassword" class="text-6xl p-4">Mot de passe</label>
+						<input type="password" name="password" id="inputPassword" class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
+					</div>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				</div>
+				<button class="bg-green-500 hover:bg-green-600 text-white font-bold w-36 h-24 rounded text-3xl" type="submit">Go !</button>
+			</form>
+			<p class="flex justify-center items-center text-xl mt-10">Pas encore de compte
+				<a href={{path('app_register')}}>? Inscrivez-vous ici.</a>
+			</p>
+		</div>
+	</div>
 {% endblock %}

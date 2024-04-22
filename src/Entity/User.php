@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Section $section = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $biography = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
@@ -197,6 +200,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSection(?Section $section): static
     {
         $this->section = $section;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
+
+    public function setBiography(?string $biography): static
+    {
+        $this->biography = $biography;
 
         return $this;
     }

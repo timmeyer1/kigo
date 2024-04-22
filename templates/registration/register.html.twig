@@ -31,7 +31,7 @@
                 </div>
                 <div class="mb-4">
                     {{ form_label(registrationForm.agreeTerms, 'J\'accepte les conditions', {'label_attr': {'class': 'text-6xl p-4'}}) }}
-                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mr-2'}}) }}
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mr-2 w-10 h-10'}}) }}
                     {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
                 <div class="mb-4">
@@ -42,7 +42,7 @@
             </div>
             <button class="bg-green-500 hover:bg-green-600 text-white font-bold w-60 h-20 rounded text-3xl" type="submit">Je m'inscris !</button>
             {{ form_end(registrationForm) }}
+            <p class="flex justify-center items-center text-xl mt-10">Vous avez déjà un compte<a href={{path('app_login')}}>? Connectez-vous ici.</a></p>
         </div>
     </div>
-    <p class="flex justify-center bottom-0">Made by L'Idem for L'Idem</p>
 {% endblock %}
