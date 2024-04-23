@@ -3,9 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
@@ -34,6 +39,17 @@ class Post
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFileName = null;
+
+    /**
+     * @var Collection<int, Media>
+     */
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Media::class)]
+    private Collection $media;
+
+    public function __construct()
+    {
+        $this->media = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +136,36 @@ class Post
     public function setImageFileName(?string $imageFileName): static
     {
         $this->imageFileName = $imageFileName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): static
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+            $medium->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): static
+    {
+        if ($this->media->removeElement($medium)) {
+            // set the owning side to null (unless already changed)
+            if ($medium->getPost() === $this) {
+                $medium->setPost(null);
+            }
+        }
 
         return $this;
     }

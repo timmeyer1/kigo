@@ -2,11 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Media;
 use App\Entity\Post;
+use App\Entity\Section;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -17,26 +21,35 @@ class PostType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('description')
-            ->add('type')
-            ->add('date_creation', null, [
-                'widget' => 'single_text',
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'shadow appearance-none border rounded py-14 text-gray-700 h-40',
+                ],
             ])
-            ->add('date_update', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
-            ->add('image', FileType::class, [
+            ->add('image_file_name', FileType::class, [
+                // 'class' => Media::class,
+                'multiple' => true,
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
                     new Image(['maxSize' => '5000k'])
                 ]
             ])
-        ;
+            ->add('type', EntityType::class, [
+                'class' => Section::class,
+                'choice_label' => 'label',
+                'label' => 'Nous avons besoin de...',
+                'multiple' => true,
+                'expanded' => true,
+                'attr' => [
+                    'class' => 'form-check',
+                    'style' => 'display: flex;
+                    flex-direction: column-reverse;
+                    ',
+                ]
+            ])
+            
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
