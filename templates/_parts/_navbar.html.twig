@@ -23,21 +23,21 @@
 <div id="drawer-bottom-example" class="fixed bottom-0 left-0 right-0 z-40 w-full bg-white dark:bg-gray-800 transform translate-y-full transition-transform duration-300 ease-in-out">
 	<div class="flex items-center justify-center h-full">
 		<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
-			<h2 class="text-6xl font-bold mb-6 text-gray-700">Nouveau post</h2>
+			<h2 class="text-6xl font-bold mb-6 text-gray-700">Nouveau projet</h2>
 			{{ form_start(form) }}
 			<div class="mb-6 grid grid-cols-2 gap-6">
 				<div>
-					<h3 class="text-4xl font-bold mb-2 text-gray-700">Titre</h3>
+					<h3 class="text-4xl font-bold mb-2 text-gray-700">Titre<span class="text-red-600">*</span></h3>
 					{{ form_widget(form.titre, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
 					{{ form_errors(form.titre) }}
 				</div>
 				<div class="mb-6">
-					<h3 class="text-4xl font-bold mb-2 text-gray-700">Description</h3>
+					<h3 class="text-4xl font-bold mb-2 text-gray-700">Description<span class="text-red-600">*</span></h3>
 					{{ form_widget(form.description, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
 					{{ form_errors(form.description) }}
 				</div>
 				<div>
-					<h3 class="text-4xl font-bold mb-2 text-gray-700">Type</h3>
+					<h3 class="text-4xl font-bold mb-2 text-gray-700">Nous avons besoin de...<span class="text-red-600">*</span></h3>
 					{{ form_widget(form.type, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
 					{{ form_errors(form.type) }}
 				</div>
@@ -46,8 +46,8 @@
 			<div class="mb-6 grid grid-cols-2 gap-6">
 				<div>
 					<h3 class="text-4xl font-bold mb-2 text-gray-700">Image</h3>
-					{{ form_widget(form.image_file_name, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
-					{{ form_errors(form.image_file_name) }}
+					{{ form_widget(form.imageFile, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+					{{ form_errors(form.imageFile) }}
 				</div>
 			</div>
 			<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ button_label|default('Enregistrer') }}</button>

@@ -13,25 +13,35 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(PostRepository $postRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // afficher le formulaire d'ajout d'un post dans la page d'accueil
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setDateCreation(new \DateTimeImmutable());
+    
+            $imageFile = $form->get('imageFile')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();;
+                $post->setImagePath($newFilename);
+            }
+    
             $entityManager->persist($post);
             $entityManager->flush();
+    
+            return $this->redirectToRoute('app_home');
         }
-
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+    
+        $posts = $postRepository->findAll();
+    
         return $this->render('home/home.html.twig', [
             'controller_name' => 'HomeController',
-            'posts' => $postRepository->findAll(),
-            'form' => $form
+            'posts' => $posts,
+            'form' => $form->createView(),
         ]);
     }
 }

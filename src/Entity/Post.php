@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -14,10 +15,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
+    #[Vich\UploadableField(mapping: 'posts', fileNameProperty: 'imagePath')]
+    private ?File $imageFile = null;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
 
     #[ORM\Column(length: 100)]
     private ?string $titre = null;
@@ -37,8 +42,9 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $user = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $imageFileName = null;
+    #[ORM\Column(length: 255)]
+    private ?string $imagePath = null;
+
 
     /**
      * @var Collection<int, Media>
@@ -128,45 +134,29 @@ class Post
         return $this;
     }
 
-    public function getImageFileName(): ?string
+    public function getImagePath(): ?string
     {
-        return $this->imageFileName;
+        return $this->imagePath;
     }
 
-    public function setImageFileName(?string $imageFileName): static
+    public function setImagePath(string $imagePath): static
     {
-        $this->imageFileName = $imageFileName;
+        $this->imagePath = $imagePath;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMedia(): Collection
+    public function setImageFile(?File $imageFile = null): void
     {
-        return $this->media;
-    }
+        $this->imageFile = $imageFile;
 
-    public function addMedium(Media $medium): static
-    {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setPost($this);
+        if (null !== $imageFile) {
+            $this->date_update = new \DateTimeImmutable();
         }
-
-        return $this;
     }
 
-    public function removeMedium(Media $medium): static
+    public function getImageFile(): ?File
     {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getPost() === $this) {
-                $medium->setPost(null);
-            }
-        }
-
-        return $this;
+        return $this->imageFile;
     }
 }
