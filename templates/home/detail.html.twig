@@ -3,27 +3,34 @@
 {% block title %}Kigo - {{ posts.title }}{% endblock %}
 
 {% block body %}
-
-<section class="container">
-    <h2 class="title-details">{{ posts.typeId.label}} - {{ posts.title }}</h2>
-    <div class="mb-3">
-        <img class="image-size" src="/images/upload/{{ posts.imagePath }}" alt="Photo du bien">
-    </div>
-    <div class="d-flex justify-content-between">
-        <div>
-            <h3>{{ posts.typeId.label }} - {{ posts.title }}</h3>
-            <h5>À savoir: <span class="text_desc">{{ posts.description }}</span></h5>
-            <h5>Équipements:</h5>
-            <ul>
-                {% for item in sections %}
-                <li>
-                    {{ item.label }}
-                </li>
-                {% endfor %}
-            </ul>
-            <h6 class="by mt-5"><b>Hôte:</b> {{ user.lastname }} {{ user.firstname }}</h6>
+    <div class="flex flex-col items-center h-screen pt-14">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo Kigo" class="w-96 pb-14">
+        <div class="bg-logo rounded-lg shadow-lg p-8 w-[90%]">
+            <h1 class="text-8xl font-bold justify-center flex py-14">{{ posts.typeId.label }} - {{ posts.title }}</h1>
+            <div class="text-start mb-6 w-full">
+                <div class="mb-4">
+                    <img class="w-full h-96 object-cover rounded-lg" src="/images/upload/{{ posts.imagePath }}" alt="Photo du bien">
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-6xl p-4">À savoir:</h3>
+                    <p class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400">{{ posts.description }}</p>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-6xl p-4">Sections demandées:</h3>
+                    <ul class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400">
+                        {% for item in sections %}
+                            <li>
+                                {{ item.label }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-6xl p-4">Crée par:</h3>
+                    <p class="bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400">{{ user.lastname }} {{ user.firstname }}</p>
+                </div>
+            </div>
         </div>
     </div>
-
-</section>
+    {% include "_parts/_navbar.html.twig" %}
 {% endblock %}
