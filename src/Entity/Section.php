@@ -18,14 +18,18 @@ class Section
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    /**
-     * @var Collection<int, User>
-     */
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_path = null;
+
+    #[ORM\ManyToMany(targetEntity: Posts::class, mappedBy: 'section_id')]
+    private Collection $posts;
+
     #[ORM\OneToMany(mappedBy: 'section', targetEntity: User::class)]
     private Collection $users;
 
     public function __construct()
     {
+        $this->posts = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -42,6 +46,45 @@ class Section
     public function setLabel(string $label): static
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->image_path;
+    }
+
+    public function setImagePath(?string $image_path): static
+    {
+        $this->image_path = $image_path;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ads>
+     */
+    public function getAds(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Posts $post): static
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+            $post->addSectionId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAd(Posts $post): static
+    {
+        if ($this->posts->removeElement($post)) {
+            $post->removeSectionId($this);
+        }
 
         return $this;
     }

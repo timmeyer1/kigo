@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kigo - {{ posts.title }}{% endblock %}
+
+{% block body %}
+
+<section class="container">
+    <h2 class="title-details">{{ posts.typeId.label}} - {{ posts.title }}</h2>
+    <div class="mb-3">
+        <img class="image-size" src="/images/upload/{{ posts.imagePath }}" alt="Photo du bien">
+    </div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <h3>{{ posts.typeId.label }} - {{ posts.title }}</h3>
+            <h5>À savoir: <span class="text_desc">{{ posts.description }}</span></h5>
+            <h5>Équipements:</h5>
+            <ul>
+                {% for item in sections %}
+                <li>
+                    {{ item.label }}
+                </li>
+                {% endfor %}
+            </ul>
+            <h6 class="by mt-5"><b>Hôte:</b> {{ user.lastname }} {{ user.firstname }}</h6>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

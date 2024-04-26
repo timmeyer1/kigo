@@ -2,27 +2,60 @@
 
 namespace App\DataFixtures;
 
+use Faker;
+use App\Entity\Type;
 use App\Entity\Section;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager): void
     {
-        $sections = [
-            ['label' => 'Arts Appliqués'],
-            ['label' => 'Design Graphique & Digital'],
-            ['label' => 'Développement Web & Informatique'],
-            ['label' => 'Audiovisuel'],
-            ['label' => 'Animation 2D/3D'],
-            ['label' => 'Métiers du Son & MAO'],
+        $this->loadSection($manager);
+        $this->loadType($manager);
+    }
+
+    public function loadSection(ObjectManager $manager): void
+    {
+        // Liste d'équipements
+        $sectionList = [
+            'Arts Appliqués',
+            'Design Graphique & Digital',
+            'Développement Web & Informatique',
+            'Audiovisuel',
+            'Animation 2D/3D',
+            'Métiers du Son & MAO',
         ];
 
-        foreach ($sections as $sectionData) {
+        foreach ($sectionList as $sectionName) {
             $section = new Section();
-            $section->setLabel($sectionData['label']);
+            $section->setLabel($sectionName);
+
             $manager->persist($section);
+        }
+
+        $manager->flush();
+    }
+
+    public function loadType(ObjectManager $manager): void
+    {
+        // Liste de types de bien
+        $propertyTypes = [
+            'Projet d\'Arts',
+            'Projet Design',
+            'Projet Développement web',
+            'Projet Audiovisuel',
+            'Projet Animation',
+            'Projet Métiers du Son',
+        ];
+
+        foreach ($propertyTypes as $typeName) {
+            $propertyType = new Type();
+            $propertyType->setLabel($typeName);
+
+            $manager->persist($propertyType);
         }
 
         $manager->flush();

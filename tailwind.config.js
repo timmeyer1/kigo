@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'logo': '#F0C777',
+        'logo_hover': '#CAA867',
         'light_gray': '#E3E3E3'
       }
     },
@@ -17,4 +18,3 @@ module.exports = {
     require('flowbite/plugin')
   ],
 }
-

@@ -8,19 +8,33 @@
 {% endblock %}
 
 {% block body %}
-	<div class="p-11">
-		<h1 class="text-5xl font-bold">Liste des projets</h1>
-		
-		<div class="max-w-max rounded overflow-hidden shadow-lg">
-			<img class="w-full" src={{asset('/images/image.jpg')}} alt="Sunset in the mountains">
-			<div class="px-6 py-4">
-				<div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-				<p class="text-gray-700 text-base">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-				</p>
-			</div>
-		</div>
-	</div>
 
-	{% include "_parts/_navbar.html.twig" %}
-{% endblock %}
+
+	<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+		{% for item in posts %}
+			{% if item.imagePath %}
+				{% set image = item.image.first %}
+				<a href={{ path('detail', {'id': item.id} ) }}>
+					<img class="rounded-t-lg" src="/images/upload/{{ item.imagePath }}" alt="Image de présentation"/>
+				</a>
+			{% else %}
+				<h4>🚫 Pas d'image</h4>
+                {% endif %}
+				<div class="p-5">
+					<a href={{ path('detail', {'id': item.id} ) }}>
+						<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
+					</a>
+					<p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><span class="font-bold">Type de projet:</span> {{ item.typeId.label }}</p>
+					<a href={{ path('detail', {'id': item.id} ) }} class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
+						Découvrir
+						<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 10">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+						</svg>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+
+
+		{% include "_parts/_navbar.html.twig" %}
+	{% endblock %}

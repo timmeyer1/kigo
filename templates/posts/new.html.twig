@@ -1,0 +1,30 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}New Ads{% endblock %}
+
+{% block body %}
+    <h1>Create new Ads</h1>
+
+    {{ include('posts/_form.html.twig') }}
+
+    <a href="{{ path('app_posts_index') }}">back to list</a>
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau projet{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Créer un nouveau projet</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ include('posts/_form.html.twig') }}
+            </div>
+        </div>
+
+        <div class="mt-3">
+        </div>
+    </div>
+{% endblock %}

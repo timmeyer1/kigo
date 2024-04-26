@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello ProfileController!
+{% endblock %}
+{% block header %}
+	{% include "_parts/_header.html.twig" %}
+{% endblock %}
+{% block body %}
+	<div class="flex flex-col items-start pl-[7%] pt-20">
+		<div class="flex flex-col items-center">
+			<img src="{{ asset('/images/user.png') }}" alt="Image user" class="rounded-full w-80 h-80 mb-4">
+			<div class="text-center w-full">
+				<h1 class="text-5xl font-bold mb-2">{{ user.lastname|upper }}
+					{{ user.firstname|capitalize }}</h1>
+			</div>
+			<div class="text-4xl mb-10 flex justify-between">
+				<h2 class="bg-light_gray rounded-full p-4 mr-2">{{ user.section.label }}</h2>
+				<h2 class="bg-light_gray rounded-full p-4">Contacter</h2>
+			</div>
+		</div>
+		<div class="bg-light_gray w-[90%] rounded-lg">
+			<p class="text-3xl p-8">🖍
+				{{ user.biography }}</p>
+		</div>
+	</div>
+	{% include "_parts/_navbar.html.twig" %}
+{% endblock %}
