@@ -1,7 +1,32 @@
 <section class="container">
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success">{{ button_label|default('✓ Sauvegarder') }}</button>
-{{ form_end(form) }}
-<a href="{{ path('accueil') }}" class="mt-2 btn btn-secondary">Retour à l'accueil</a>
+	{{ form_start(form, {'attr': {'class': 'flex flex-col items-center'}}) }}
+	<div class="text-start mb-6 w-full">
+		<div class="mb-4">
+			{{ form_label(form.title, 'Titre', {'label_attr': {'class': 'text-6xl p-4'}}) }}
+			{{ form_widget(form.title, {'attr': {'class': 'bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400', 'placeholder': 'Entrez votre titre'}}) }}
+			{{ form_errors(form.title) }}
+		</div>
+		<div class="mb-4">
+			{{ form_label(form.description, 'Description', {'label_attr': {'class': 'text-6xl p-4'}}) }}
+			{{ form_widget(form.description, {'attr': {'class': 'bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400', 'placeholder': 'Entrez une description au projet'}}) }}
+			{{ form_errors(form.description) }}
+		</div>
+		<div class="mb-4">
+			{{ form_label(form.typeId, 'Quel est le type de projet ?', {'label_attr': {'class': 'text-6xl p-4'}}) }}
+			{{ form_widget(form.typeId, {'attr': {'class': 'bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400', 'placeholder': 'Type de projet'}}) }}
+			{{ form_errors(form.typeId) }}
+		</div>
+		<div class="mb-4">
+			{{ form_label(form.imageFile, 'Placez-votre image', {'label_attr': {'class': 'text-6xl p-4'}}) }}
+			{{ form_widget(form.imageFile, {'attr': {'class': 'bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400', 'placeholder': 'Image de présentation'}}) }}
+			{{ form_errors(form.imageFile) }}
+		</div>
+		<div class="mb-4">
+			{{ form_label(form.section_id, 'Nous avons besoin de...', {'label_attr': {'class': 'text-6xl p-4'}}) }}
+			{{ form_widget(form.section_id, {'attr': {'class': 'bg-white border-gray-600 rounded-lg w-full px-8 py-6 text-3xl placeholder:text-gray-400', 'placeholder': 'Les sections demandées'}}) }}
+			{{ form_errors(form.section_id) }}
+		</div>
+	</div>
+	<button class="bg-green-500 hover:bg-green-600 text-white font-bold w-60 h-20 rounded text-3xl" type="submit">J'ajoute !</button>
+	{{ form_end(form) }}
 </section>

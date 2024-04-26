@@ -36,7 +36,7 @@ class PostsType extends AbstractType
             ->add('section_id', EntityType::class, [
                 'class' => Section::class,
                 'choice_label' => 'label',
-                'label' => 'Equipement',
+                'label' => 'Section',
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => [

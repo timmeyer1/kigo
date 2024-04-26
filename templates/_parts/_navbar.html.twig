@@ -1,4 +1,4 @@
-<div class="fixed bottom-0 w-screen bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.06)] flex justify-around items-center px-4 py-9 drawer-open:hidden">
+<div class="fixed bottom-0 w-screen bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.06)] flex justify-around items-center py-9 drawer-open:hidden">
 	<a href={{path('accueil')}} class="flex flex-col items-center text-gray-500 hover:text-gray-700">
 		<svg class="w-14 h-14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 24 24">
 			<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
@@ -33,7 +33,7 @@
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 					</svg>
 				</a>
-				<a href="{{ path('addPost', {'id': app.user.id}) }}" class="text-6xl inline-flex items-center px-3 py-2 font-medium text-center text-gray-700 bg-logo rounded-lg hover:bg-logo_hover ">
+				<a href="{{ path('myPosts')}}" class="text-6xl inline-flex items-center px-3 py-2 font-medium text-center text-gray-700 bg-logo rounded-lg hover:bg-logo_hover ">
 					Éditer un projet
 					<svg class="rtl:rotate-180 w-8 h-8 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 10">
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
