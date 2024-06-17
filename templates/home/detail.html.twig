@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{# {% extends "base.html.twig" %}
 
 {% block title %}Kigo - {{ posts.title }}{% endblock %}
 
@@ -33,4 +33,41 @@
         </div>
     </div>
     {% include "_parts/_navbar.html.twig" %}
+{% endblock %} #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}Kigo -
+	{{ posts.title }}
+{% endblock %}
+
+{% block body %}
+	<div class="flex flex-col items-center h-screen bg-gray-100 relative">
+		<div class="w-[50rem] h-[50rem] bg-white rounded-lg shadow-lg overflow-hidden mt-20">
+			<img src="/images/upload/{{ posts.imagePath }}" alt="Image du projet" class="w-full h-auto sm:h-auto object-cover">
+		</div>
+		<div class="flex flex-col items-start justify-start w-[50rem] p-6">
+			<h2 class="text-7xl font-bold mb-6 text-center w-full">{{ posts.title }}</h2>
+			<div class="flex items-start mb-4 text-4xl">
+				<span class="bg-gray-200 text-gray-600 py-1 px-3 rounded-full text-4xl mr-2">
+					{% for item in sections %}
+						<li>
+							{{ item.label }}
+						</li>
+					{% endfor %}
+				</span>
+			</div>
+			<p class="text-gray-700 leading-relaxed text-4xl">
+				{{ posts.description }}
+			</p>
+		</div>
+		<div class="absolute bottom-[10%] justify-center">
+        {% for item in posts %}
+			<div class="items-center justify-center px-6 py-4 text-7xl font-bold text-center text-white bg-green-500 rounded-lg hover:bg-green-700">
+				{% include "_parts/_like.html.twig" %}
+			</div>
+		</div>
+        {% endfor %}
+	</div>
+	{% include "_parts/_navbar.html.twig" %}
 {% endblock %}

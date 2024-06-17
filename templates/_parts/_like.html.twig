@@ -1,20 +1,22 @@
 <div class="like">
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    {% if app.user in item.likes %}
-    <a href="{{ path('likePost', {'id': item.id}) }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ec6464"
-            class="bi bi-heart-fill {{app.user in item.likes ? 'hidden' : ''}}" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-        </svg>
-    </a>
-    {% else %}
-    <a href="{{ path('likePost', {'id': item.id}) }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#200A0A"
-            class="bi bi-heart-fill {{app.user in item.likes ? 'hidden' : ''}}" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-        </svg>
-    </a>
-    {% endif %}
-    {% else %}
-    {% endif %}
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		{% if app.user in item.likes %}
+			<a href="{{ path('likePost', {'id': item.id}) }}" class="inline-flex items-center px-3 py-2 text-xl font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-700">
+				Je me désinscris !
+				<svg class="rtl:rotate-180 w-5 h-5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 10">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+				</svg>
+			</a>
+
+		{% else %}
+			<a href="{{ path('likePost', {'id': item.id}) }}" class="inline-flex items-center px-3 py-2 text-xl font-medium text-center text-white bg-green-500 rounded-lg hover:bg-green-700">
+				Je rejoins !
+				<svg class="rtl:rotate-180 w-5 h-5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 10">
+					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+				</svg>
+			</a>
+
+		{% endif %}
+		{% else %}
+	{% endif %}
 </div>
