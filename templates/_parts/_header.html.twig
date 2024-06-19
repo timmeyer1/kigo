@@ -1,7 +1,9 @@
 {% block header %}
 	<header>
 		<div class="w-screen bg-white shadow-md flex justify-between items-center px-4 py-3">
-			<a class="text-3xl" href="{{ path('accueil') }}">Kigo</a>
+			<a class="text-3xl" href="{{ path('accueil') }}">
+			<img src="{{ asset('images/logo.png') }}" alt="Logo Kigo" class="w-[10%]">
+			</a>
 			<div class="text-right">
 				<button class="text-black rounded-lg px-5 py-2.5 mb-2 focus:outline-none" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
 					<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 16 3">

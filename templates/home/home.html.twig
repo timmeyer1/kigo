@@ -1,44 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-    {% include "_parts/_header.html.twig" %}
+	{% include "_parts/_header.html.twig" %}
 {% endblock %}
 
-{% block title %}Kigo - Accueil{% endblock %}
+{% block title %}Kigo - Accueil
+{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto my-20">
-        <h1 class="text-8xl justify-center flex pb-10">Liste des projets</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {% for item in posts %}
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    {% if item.imagePath %}
-                        <a href="{{ path('detail', {'id': item.id}) }}">
-                            <img class="rounded-t-lg w-full h-64 object-cover" src="/images/upload/{{ item.imagePath }}" alt="Image de présentation" />
-                        </a>
-                    {% else %}
-                        <h4 class="text-4xl font-bold">🚫 Pas d'image</h4>
-                    {% endif %}
-                    <div class="p-5">
-                        <a href="{{ path('detail', {'id': item.id}) }}">
-                            <h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
-                        </a>
-                        <p class="mb-3 font-normal text-2xl text-gray-700 dark:text-gray-400">
-                            <span class="font-bold">Type de projet:</span>
-                            {{ item.typeId.label }}
-                        </p>
-                        <a href="{{ path('detail', {'id': item.id}) }}" class="inline-flex items-center px-3 py-2 text-xl font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
-                            Découvrir
-                            <svg class="rtl:rotate-180 w-5 h-5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </a>
-                        {% include "_parts/_like.html.twig" %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+	<div class="container mx-auto my-20">
+		<h1 class="text-8xl justify-center flex pb-10">Liste des projets</h1>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			{% for item in posts %}
+				<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+					{% if item.imagePath %}
+						<a href="{{ path('detail', {'id': item.id}) }}">
+							<img class="rounded-t-lg w-full h-64 object-cover" src="/images/upload/{{ item.imagePath }}" alt="Image de présentation"/>
+						</a>
+					{% else %}
+						<h4 class="text-4xl font-bold">🚫 Pas d'image</h4>
+					{% endif %}
+					<div class="p-5">
+						<a href="{{ path('detail', {'id': item.id}) }}">
+							<h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
+						</a>
+						<p class="mb-3 font-normal text-2xl text-gray-700 dark:text-gray-400">
+							<span class="font-bold">Type de projet:</span>
+							{{ item.typeId.label }}
+						</p>
+						<a href="{{ path('detail', {'id': item.id}) }}" class="inline-flex items-center px-3 py-2 text-xl font-medium text-center text-white bg-logo rounded-lg hover:bg-logo_hover">
+							Découvrir
+							<svg class="rtl:rotate-180 w-5 h-5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 10">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 
-    {% include "_parts/_navbar.html.twig" %}
+	{% include "_parts/_navbar.html.twig" %}
 {% endblock %}

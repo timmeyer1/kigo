@@ -1,51 +1,39 @@
 {# favorites.html.twig #}
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Mes favoris{% endblock %}
+{% block header %}
+	{% include "_parts/_header.html.twig" %}
+{% endblock %}
+
+{% block title %}Mes favoris
+{% endblock %}
 
 {% block body %}
-<h1 class="text-center pb-4">Mes favoris</h1>
-<section class="d-flex gap-5 flex-wrap justify-content-center">
-    {% for item in likes %}
-    <div class="card" style="width: 18rem;">
-        <a class="text-decoration-none text-dark" href="{{ path('detail', {'id': item.id}) }}">
-            {% if item.imagePath %}
-            {% set image = item.image.first %}
-            <img class="card-img-top" src="/images/upload/{{ item.imagePath }}" alt="Card image cap">
-            <div class="like d-flex position-absolute top-0 start-0 p-3">
-                <div class="like">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {% if app.user in item.likes %}
-                    <a href="{{ path('likePost', {'id': item.id}) }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ec6464"
-                            class="bi bi-heart-fill {{app.user in item.likes ? 'hidden' : ''}}" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                        </svg>
-                    </a>
-                    {% else %}
-                    <a href="{{ path('likePost', {'id': item.id}) }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#200A0A"
-                            class="bi bi-heart-fill {{app.user in item.likes ? 'hidden' : ''}}" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                        </svg>
-                    </a>
-                    {% endif %}
-                    {% else %}
-                    {% endif %}
-                </div>
-            </div>
-            {% else %}
-            {# Handle the case where the image is not available #}
-            <h4>🚫 Pas d'image</h4>
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ item.title }}}</h5>
-                <p class="card-text">{{ item.description }}</p>
-            </div>
-        </a>
-    </div>
-    {% endfor %}
-</section>
+	<div class="container mx-auto my-20">
+		<h1 class="text-8xl justify-center flex pb-10">Mes favoris</h1>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			{% for item in likes %}
+				<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+					{% if item.imagePath %}
+						<a href="{{ path('detail', {'id': item.id}) }}">
+							<img class="rounded-t-lg w-full h-64 object-cover" src="/images/upload/{{ item.imagePath }}" alt="Image de présentation"/>
+						</a>
+					{% else %}
+						<h4 class="text-4xl font-bold">🚫 Pas d'image</h4>
+					{% endif %}
+					<div class="p-5">
+						<a href="{{ path('detail', {'id': item.id}) }}">
+							<h5 class="mb-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
+						</a>
+						<p class="mb-3 font-normal text-2xl text-gray-700 dark:text-gray-400">
+							<span class="font-bold">Type de projet:</span>
+							{{ item.typeId.label }}
+						</p>
+						{% include "_parts/_like.html.twig" with {'item': item} %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% include "_parts/_navbar.html.twig" %}
 {% endblock %}
