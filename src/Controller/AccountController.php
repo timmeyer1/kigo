@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\AdsRepository;
 use App\Repository\PostsRepository;
@@ -12,6 +13,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class AccountController extends AbstractController
 {
@@ -38,12 +40,12 @@ class AccountController extends AbstractController
     public function myPosts(PostsRepository $postsRepository): Response
     {
         $user = $this->getUser(); // Récupérer l'utilisateur actuel
-    
+
         // si l'utilisateur n'est pas connecté on renvoie à l'accueil
         if (!$user) {
             return $this->redirectToRoute('accueil');
         }
-        
+
         return $this->render('account/myPosts.html.twig', [
             'userId' => $postsRepository->findAllByUserId([$this->security->getUser()]),
         ]);
@@ -78,16 +80,48 @@ class AccountController extends AbstractController
     public function myFavorites(PostsRepository $postsRepository)
     {
         $user = $this->getUser(); // Récupérer l'utilisateur actuel
-    
+
         // si l'utilisateur n'est pas connecté on renvoie à l'accueil
         if (!$user) {
             return $this->redirectToRoute('accueil');
         }
-    
+
         $likes = $postsRepository->findAllLikesByUser($user);
-    
+
         return $this->render('account/favorites.html.twig', [
             'likes' => $likes,
+        ]);
+    }
+
+    // modifier mon profil
+    #[Route('/profile/edit/{id}', name: 'editProfile', methods: ['GET', 'POST'])]
+    public function editProfile(User $user, Request $request, EntityManagerInterface $manager): Response
+    {
+
+        // si l'utilisateur n'est pas connecté on renvoie au login
+        if (!$user) {
+            return $this->redirectToRoute('login');
+        }
+
+        if($user !== $this->getUser()) {
+            return $this->redirectToRoute('login');
+
+        }
+
+        $form = $this->createForm(UserType:: class, $user);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash('success', 'Profil mis à jour !');
+            return $this->redirectToRoute('profile');
+        }
+
+        return $this->render('account/edit.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
